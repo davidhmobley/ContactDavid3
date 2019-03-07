@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static final int REQUEST_CALL_PERMISSION = 1;
 
-    private Button mPhoneButton;
+    private Button mTextButton, mPhoneButton;
     private ContactDavid3App mApp;
     private boolean mCallGranted = false;
 
@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         actionBar.setSubtitle(getResources().getString(R.string.main_subtitle));
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setHomeButtonEnabled(true);
+
+        mTextButton = (Button) findViewById(R.id.textButton);
+        mTextButton.setOnClickListener(this);
 
         mPhoneButton = (Button) findViewById(R.id.phoneButton);
         mPhoneButton.setOnClickListener(this);
@@ -106,7 +109,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        if (view == mPhoneButton) {
+        if (view == mTextButton) {
+            String cell = mApp.getAppPrefs().getString(ContactDavid3App.PREF_CELL_PHONE_KEY,
+                    getString(R.string.default_cell_phone));
+
+            Uri uri = Uri.parse("smsto:" + cell);
+            Intent sendIntent = new Intent(Intent.ACTION_SENDTO, uri);
+            startActivity(sendIntent);
+
+        } else if (view == mPhoneButton) {
             doPhoneCall();
         }
     }
