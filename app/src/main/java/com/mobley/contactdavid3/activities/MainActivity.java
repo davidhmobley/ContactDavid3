@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static final int REQUEST_CALL_PERMISSION = 1;
 
-    private Button mTextButton, mPhoneButton;
+    private Button mTextButton, mEmailButton, mPhoneButton;
     private ContactDavid3App mApp;
     private boolean mCallGranted = false;
 
@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mTextButton = (Button) findViewById(R.id.textButton);
         mTextButton.setOnClickListener(this);
+
+        mEmailButton = (Button) findViewById(R.id.emailButton);
+        mEmailButton.setOnClickListener(this);
 
         mPhoneButton = (Button) findViewById(R.id.phoneButton);
         mPhoneButton.setOnClickListener(this);
@@ -116,6 +119,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Uri uri = Uri.parse("smsto:" + cell);
             Intent sendIntent = new Intent(Intent.ACTION_SENDTO, uri);
             startActivity(sendIntent);
+
+        } else if (view == mEmailButton) {
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[] { getString(R.string.default_email) });
+            intent.putExtra(Intent.EXTRA_SUBJECT, "From ContactDavid3 App");
+            //intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
+
+            startActivity(Intent.createChooser(intent, "Send Email"));
 
         } else if (view == mPhoneButton) {
             doPhoneCall();

@@ -9,10 +9,12 @@
 
     <string name="phone_button_label">Call</string>
     <string name="text_button_label">Text</string>
+    <string name="email_button_label">Email</string>
 
     <string name="action_settings">Settings</string>
     <string name="action_exit">Exit</string>
 
+    <string name="default_email">davidhmobley@gmail.com</string>
     <string name="default_cell_phone">7039731884</string>
     <string name="default_work_phone">9999999999</string>
 
