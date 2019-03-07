@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="bg_color">#ecff97</color>
+
     <color name="button_default_color">@color/colorPrimary</color>
     <color name="button_disabled_color">#c0c0c0</color>
     <color name="button_pressed_color">@color/colorAccent</color>

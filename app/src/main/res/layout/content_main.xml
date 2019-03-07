@@ -20,7 +20,7 @@
             android:id="@+id/textButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/text_button_selector"
             android:text="@string/text_button_label"
             android:textColor="@android:color/white" />
@@ -29,7 +29,7 @@
             android:id="@+id/emailButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/text_button_selector"
             android:text="@string/email_button_label"
             android:textColor="@android:color/white" />
@@ -38,7 +38,7 @@
             android:id="@+id/phoneButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/text_button_selector"
             android:text="@string/phone_button_label"
             android:textColor="@android:color/white" />
