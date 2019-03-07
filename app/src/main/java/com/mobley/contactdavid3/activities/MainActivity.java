@@ -1,12 +1,14 @@
 package com.mobley.contactdavid3.activities;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,8 +23,11 @@ import java.util.TimeZone;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     protected static final String TAG = MainActivity.class.getSimpleName();
 
+    public static final int REQUEST_CALL_PERMISSION = 1;
+
     private Button mPhoneButton;
     private ContactDavid3App mApp;
+    private boolean mCallGranted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,22 +44,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         actionBar.setHomeButtonEnabled(true);
 
         mPhoneButton = (Button) findViewById(R.id.phoneButton);
-
         mPhoneButton.setOnClickListener(this);
 
-        /**
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-         **/
+        verifyPermissions(this);
     }
 
     @Override
@@ -88,6 +80,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         return bOK;
+    }
+
+    private void verifyPermissions(Activity context) {
+        int permission = ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE);
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(context,
+                    new String[] { Manifest.permission.CALL_PHONE },
+                    REQUEST_CALL_PERMISSION);
+        }
+    }
+
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] results) {
+        switch(requestCode) {
+            case(REQUEST_CALL_PERMISSION):
+                if (results.length > 0 && results[0] == PackageManager.PERMISSION_GRANTED) {
+                    // got it!
+                    mCallGranted = true;
+                } else {
+                    mCallGranted = false;
+                }
+                break;
+        }
     }
 
     @Override
