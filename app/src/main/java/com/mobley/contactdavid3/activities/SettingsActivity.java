@@ -91,4 +91,21 @@ public class SettingsActivity extends PreferenceActivity {
 		}
 	}
 
+	/**
+	 * Name Preferences Fragment
+	 * @author mobleyd
+	 *
+	 */
+	public static class NamePreferences extends PreferenceFragment {
+		/** Logging tag */
+		protected static final String TAG = NamePreferences.class.getSimpleName();
+
+		@Override
+		public void onCreate(Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+
+			addPreferencesFromResource(R.xml.name_prefs);
+		}
+	}
+
 }

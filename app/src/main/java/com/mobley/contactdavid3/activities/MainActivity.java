@@ -56,6 +56,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        mTextButton.setText(String.format(getString(R.string.text_button_label), mApp.getAppPrefs().getString(ContactDavid3App.PREF_NAME_KEY, getString(R.string.default_name))));
+        mEmailButton.setText(String.format(getString(R.string.email_button_label), mApp.getAppPrefs().getString(ContactDavid3App.PREF_NAME_KEY, getString(R.string.default_name))));
+        mPhoneButton.setText(String.format(getString(R.string.phone_button_label), mApp.getAppPrefs().getString(ContactDavid3App.PREF_NAME_KEY, getString(R.string.default_name))));
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);

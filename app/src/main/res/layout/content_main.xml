@@ -22,6 +22,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:background="@drawable/text_button_selector"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:text="@string/text_button_label"
             android:textColor="@android:color/white" />
 
@@ -31,6 +33,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:background="@drawable/text_button_selector"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:text="@string/email_button_label"
             android:textColor="@android:color/white" />
 
@@ -40,6 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:background="@drawable/text_button_selector"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:text="@string/phone_button_label"
             android:textColor="@android:color/white" />
 
