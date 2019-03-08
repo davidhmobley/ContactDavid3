@@ -132,8 +132,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (view == mEmailButton) {
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_EMAIL, new String[] { getString(R.string.default_email) });
-            intent.putExtra(Intent.EXTRA_SUBJECT, "From ContactDavid3 App");
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[]
+                    { mApp.getAppPrefs().getString(ContactDavid3App.PREF_EMAIL_KEY, getString(R.string.default_email)) });
+            intent.putExtra(Intent.EXTRA_SUBJECT, "From ContactMe App");
             //intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
 
             startActivity(Intent.createChooser(intent, "Send Email"));

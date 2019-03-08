@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 
 public class ContactDavid3App extends Application {
 
+    public static String PREF_EMAIL_KEY;
     public static String PREF_NAME_KEY;
     public static String PREF_CELL_PHONE_KEY;
     public static String PREF_WORK_PHONE_KEY;
@@ -36,6 +37,13 @@ public class ContactDavid3App extends Application {
         if (!mAppPrefs.contains(PREF_NAME_KEY)) {
             SharedPreferences.Editor editor = mAppPrefs.edit();
             editor.putString(PREF_NAME_KEY, getString(R.string.default_name));
+            editor.commit();
+        }
+
+        PREF_EMAIL_KEY = getResources().getString(R.string.pref_email_key);
+        if (!mAppPrefs.contains(PREF_EMAIL_KEY)) {
+            SharedPreferences.Editor editor = mAppPrefs.edit();
+            editor.putString(PREF_EMAIL_KEY, getString(R.string.default_email));
             editor.commit();
         }
     }

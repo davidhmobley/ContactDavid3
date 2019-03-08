@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">ContactDavid3</string>
-    <string name="app_title">Contact David</string>
+    <string name="app_name">ContactMe</string>
+    <string name="app_title">ContactMe</string>
     <string name="splash_company_name">Mobley, Inc</string>
     <string name="splash_copyright">copyright 2019</string>
 
@@ -32,11 +32,16 @@
     <string name="pref_work_phone_title">Work Phone Number</string>
     <string name="pref_work_phone_summary">Phone number of work phone</string>
 
-    <string name="pref_category_name_title">Contact Name</string>
-    <string name="pref_category_name_summary">Set contact name</string>
+    <string name="pref_category_name_email_title">Contact Name, Email</string>
+    <string name="pref_category_name_email_summary">Set contact name, email</string>
 
     <string name="pref_category_name">Contact Name</string>
     <string name="pref_name_key">ContactName</string>
     <string name="pref_name_title">Contact Name</string>
     <string name="pref_name_summary">Name of contact</string>
+
+    <string name="pref_category_email">Contact Email</string>
+    <string name="pref_email_key">ContactEmail</string>
+    <string name="pref_email_title">Contact Email</string>
+    <string name="pref_email_summary">Email of contact</string>
 </resources>
