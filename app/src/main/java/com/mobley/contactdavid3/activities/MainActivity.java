@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -198,13 +199,50 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private boolean isDuringWorkHours(Calendar cal) {
-        int start = 6;
-        //mApp.getAppPrefs().getInt(ContactDavid3App.PREF_START_HOUR_KEY, getResources().getInteger(R.integer.default_start_hour));
-        int stop = 14;
-        //mApp.getAppPrefs().getInt(ContactDavid3App.PREF_STOP_HOUR_KEY, getResources().getInteger(R.integer.default_stop_hour));
+        String hourStr, minuteStr, startStr, endStr;
+        int colon, startHour, startMinutes, endHour, endMinutes;
 
-        int now = cal.get(Calendar.HOUR_OF_DAY);
-        if (now >= start && now <= stop) {
+        // Start Work Time
+        startStr = mApp.getAppPrefs().getString(ContactDavid3App.PREF_TIME_START_KEY, getString(R.string.default_time_start));
+        // returns something like 9:15 or just 9
+        colon = startStr.indexOf(':');
+        if (colon == 0) {
+            hourStr = startStr;
+            minuteStr = "0";
+        } else {
+            hourStr = startStr.substring(0, colon);
+            minuteStr = startStr.substring(colon+1);
+        }
+        startHour = Integer.valueOf(hourStr);
+        startMinutes = Integer.valueOf(minuteStr);
+
+        // End Work Time
+        endStr = mApp.getAppPrefs().getString(ContactDavid3App.PREF_TIME_END_KEY, getString(R.string.default_time_end));
+        // returns something like 2:15 or just 2
+        colon = endStr.indexOf(':');
+        if (colon == 0) {
+            hourStr = endStr;
+            minuteStr = "0";
+        } else {
+            hourStr = endStr.substring(0, colon);
+            minuteStr = endStr.substring(colon+1);
+        }
+        endHour = Integer.valueOf(hourStr);
+        if (endHour < startHour) {
+            endHour += 12; // 24 hour clock!
+        }
+        endMinutes = Integer.valueOf(minuteStr);
+
+        // current values
+        int nowHour = cal.get(Calendar.HOUR_OF_DAY);
+        int nowMinute = cal.get(Calendar.MINUTE);
+
+        // convert to minutes past midnight
+        nowHour = (nowHour * 60) + nowMinute;
+        startHour = (startHour * 60) + startMinutes;
+        endHour = (endHour * 60) + endMinutes;
+
+        if (nowHour >= startHour && nowHour <= endHour) {
             return true;
         }
 
