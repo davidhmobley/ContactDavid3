@@ -11,4 +11,11 @@
         android:title="@string/pref_category_phone_title"
         android:summary="@string/pref_category_phone_summary" />
 
+    <!--
+    <header
+        android:fragment="com.mobley.contactdavid3.activities.SettingsActivity$TimePreferences"
+        android:title="@string/pref_category_time_title"
+        android:summary="@string/pref_category_time_summary" />
+        -->
+
 </preference-headers>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/pref_category_time_start" >
+        <EditTextPreference
+            android:key="@string/pref_time_start_key"
+            android:title="@string/pref_time_start_title"
+            android:summary="@string/pref_time_start_summary" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pref_category_time_end" >
+        <EditTextPreference
+            android:key="@string/pref_time_end_key"
+            android:title="@string/pref_time_end_title"
+            android:summary="@string/pref_time_end_summary" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

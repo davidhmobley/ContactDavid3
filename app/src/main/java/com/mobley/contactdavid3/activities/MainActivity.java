@@ -16,6 +16,7 @@ import android.widget.Button;
 
 import com.mobley.contactdavid3.ContactDavid3App;
 import com.mobley.contactdavid3.R;
+import com.mobley.contactdavid3.dialogs.WorkTimeDialog;
 
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -81,6 +82,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 Intent preferencesIntent = new Intent(this, SettingsActivity.class);
                 startActivity(preferencesIntent);
+
+                break;
+            case R.id.action_settimes:
+                bOK = true; // processed
+
+                WorkTimeDialog dlg = (WorkTimeDialog) WorkTimeDialog.newInstance();
+                dlg.setStartTime(mApp.getAppPrefs().getString(ContactDavid3App.PREF_TIME_START_KEY, getString(R.string.default_time_start)));
+                dlg.setEndTime(mApp.getAppPrefs().getString(ContactDavid3App.PREF_TIME_END_KEY, getString(R.string.default_time_end)));
+                dlg.show(getFragmentManager(), "WorkTime");
 
                 break;
             case R.id.action_exit:

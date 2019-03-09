@@ -10,6 +10,8 @@ public class ContactDavid3App extends Application {
     public static String PREF_NAME_KEY;
     public static String PREF_CELL_PHONE_KEY;
     public static String PREF_WORK_PHONE_KEY;
+    public static String PREF_TIME_START_KEY;
+    public static String PREF_TIME_END_KEY;
 
     private SharedPreferences mAppPrefs = null;
 
@@ -18,6 +20,20 @@ public class ContactDavid3App extends Application {
         super.onCreate();
 
         mAppPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        PREF_TIME_START_KEY = getResources().getString(R.string.pref_time_start_key);
+        if (!mAppPrefs.contains(PREF_TIME_START_KEY)) {
+            SharedPreferences.Editor editor = mAppPrefs.edit();
+            editor.putString(PREF_TIME_START_KEY, getString(R.string.default_time_start));
+            editor.commit();
+        }
+
+        PREF_TIME_END_KEY = getResources().getString(R.string.pref_time_end_key);
+        if (!mAppPrefs.contains(PREF_TIME_END_KEY)) {
+            SharedPreferences.Editor editor = mAppPrefs.edit();
+            editor.putString(PREF_TIME_END_KEY, getString(R.string.default_time_end));
+            editor.commit();
+        }
 
         PREF_CELL_PHONE_KEY = getResources().getString(R.string.pref_cell_phone_key);
         if (!mAppPrefs.contains(PREF_CELL_PHONE_KEY)) {
