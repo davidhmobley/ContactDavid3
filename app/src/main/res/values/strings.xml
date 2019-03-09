@@ -15,9 +15,9 @@
     <string name="action_settimes">Set Work Times</string>
     <string name="action_exit">Exit</string>
 
-    <string name="default_name">David</string>
-    <string name="default_email">davidhmobley@gmail.com</string>
-    <string name="default_cell_phone">7039731884</string>
+    <string name="default_name">Name</string>
+    <string name="default_email">noreply@email.com</string>
+    <string name="default_cell_phone">9999999999</string>
     <string name="default_work_phone">9999999999</string>
     <string name="default_time_start">9:00</string>
     <string name="default_time_end">5:00</string>
