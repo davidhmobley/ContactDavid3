@@ -1,11 +1,10 @@
 package com.mobley.contactdavid3.dialogs;
 
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.app.DialogFragment;
+import android.support.v7.app.AppCompatDialogFragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,7 @@ import android.widget.TextView;
 import com.mobley.contactdavid3.ContactDavid3App;
 import com.mobley.contactdavid3.R;
 
-public class WorkTimeDialog extends DialogFragment implements View.OnClickListener {
+public class WorkTimeDialog extends AppCompatDialogFragment implements View.OnClickListener {
     protected static final String TAG = WorkTimeDialog.class.getSimpleName();
 
     private ContactDavid3App mApp;
@@ -27,8 +26,8 @@ public class WorkTimeDialog extends DialogFragment implements View.OnClickListen
     private String mStartTime;
     private String mEndTime;
 
-    public static DialogFragment newInstance() {
-        DialogFragment dialogFragment = new WorkTimeDialog();
+    public static AppCompatDialogFragment newInstance() {
+        AppCompatDialogFragment dialogFragment = new WorkTimeDialog();
         return dialogFragment;
     }
 
@@ -56,14 +55,14 @@ public class WorkTimeDialog extends DialogFragment implements View.OnClickListen
         View view = inflater.inflate(R.layout.work_time_dialog, null);
 
         mStartTV = view.findViewById(R.id.startTimeTV);
-        mStartET = (EditText) view.findViewById(R.id.startTime);
+        mStartET = view.findViewById(R.id.startTime);
         mStartET.setText(mStartTime);
 
         mEndTV = view.findViewById(R.id.endTimeTV);
-        mEndET = (EditText) view.findViewById(R.id.endTime);
+        mEndET = view.findViewById(R.id.endTime);
         mEndET.setText(mEndTime);
 
-        mGoButton = (Button) view.findViewById(R.id.goButton);
+        mGoButton = view.findViewById(R.id.goButton);
         mGoButton.setOnClickListener(this);
 
         return view;

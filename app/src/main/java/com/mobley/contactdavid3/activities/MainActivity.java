@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 WorkTimeDialog dlg = (WorkTimeDialog) WorkTimeDialog.newInstance();
                 dlg.setStartTime(mApp.getAppPrefs().getString(ContactDavid3App.PREF_TIME_START_KEY, getString(R.string.default_time_start)));
                 dlg.setEndTime(mApp.getAppPrefs().getString(ContactDavid3App.PREF_TIME_END_KEY, getString(R.string.default_time_end)));
-                dlg.show(getFragmentManager(), "WorkTime");
+                dlg.show(getSupportFragmentManager(), "WorkTime");
 
                 break;
             case R.id.action_exit:
