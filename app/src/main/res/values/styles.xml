@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="android:actionBarStyle">@style/MyActionBarStyle</item>
+        <item name="android:dialogTheme">@style/MyDialogStyle</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -16,6 +19,23 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="MyActionBarStyle" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:titleTextStyle">@style/My_Title_TextAppearance</item>
+        <item name="android:subtitleTextStyle">@style/My_Subtitle_TextAppearance</item>
+    </style>
+
+    <style name="My_Title_TextAppearance" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text_size_smallmedium</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="My_Subtitle_TextAppearance" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Subtitle">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/text_size_xsmall</item>
+        <item name="android:textStyle">normal</item>
+    </style>
 
     <style name="MySplash_TextAppearance">
         <item name="android:textColor">@android:color/white</item>
@@ -33,6 +53,48 @@
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/text_size_xsmall</item>
         <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="MyBorderlessButtonStyle" parent="@android:style/Widget.Holo.Light.Button">
+        <item name="android:background">@drawable/text_button_selector</item>
+        <item name="android:textAppearance">@style/MyBorderlessButtonTextAppearance</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:minHeight">48dip</item>
+        <item name="android:minWidth">64dip</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+    </style>
+    <style name="MyBorderlessButtonTextAppearance">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/text_size_mediumlarge</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="MyDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowCloseOnTouchOutside">false</item>
+        <item name="android:windowBackground">@color/bg_color</item>
+        <item name="android:windowTitleStyle">@style/My_DialogTitleStyle</item>
+        <item name="android:windowAnimationStyle">@style/MyDialogAnimations</item>
+        <item name="android:windowIsFloating">true</item>
+        <!-- item name="android:buttonBarStyle">@style/My_DialogButtonBarStyle</item -->
+        <item name="android:buttonStyle">@style/MyBorderlessButtonStyle</item>
+    </style>
+
+    <style name="My_DialogTitleStyle">
+        <item name="android:cacheColorHint">#000000</item>
+        <!-- item name="android:background">@drawable/dialog_title_background</item -->
+        <item name="android:textAppearance">@style/My_DialogTitleTextAppearance</item>
+    </style>
+
+    <style name="My_DialogTitleTextAppearance">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="MyDialogAnimations">
+        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowExitAnimation">@anim/fade_out</item>
     </style>
 
 </resources>
