@@ -136,26 +136,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String cell = mApp.getAppPrefs().getString(ContactDavid3App.PREF_CELL_PHONE_KEY,
                     getString(R.string.default_cell_phone));
 
+            mApp.mySnackbar(view, String.format(getString(R.string.textbar_msg), cell), true);
+
             Uri uri = Uri.parse("smsto:" + cell);
             Intent sendIntent = new Intent(Intent.ACTION_SENDTO, uri);
             startActivity(sendIntent);
 
         } else if (view == mEmailButton) {
+            String email = mApp.getAppPrefs().getString(ContactDavid3App.PREF_EMAIL_KEY, getString(R.string.default_email));
+
+            mApp.mySnackbar(view, String.format(getString(R.string.emailbar_msg), email), true);
+
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_EMAIL, new String[]
-                    { mApp.getAppPrefs().getString(ContactDavid3App.PREF_EMAIL_KEY, getString(R.string.default_email)) });
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[] { email });
             intent.putExtra(Intent.EXTRA_SUBJECT, "From ContactMe App");
             //intent.putExtra(Intent.EXTRA_TEXT, "I'm email body.");
 
             startActivity(Intent.createChooser(intent, "Send Email"));
 
         } else if (view == mPhoneButton) {
-            doPhoneCall();
+            doPhoneCall(view);
         }
     }
 
-    private void doPhoneCall() {
+    private void doPhoneCall(View view) {
         String cell = mApp.getAppPrefs().getString(ContactDavid3App.PREF_CELL_PHONE_KEY,
                 getString(R.string.default_cell_phone));
         String work = mApp.getAppPrefs().getString(ContactDavid3App.PREF_WORK_PHONE_KEY,
@@ -174,6 +179,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 uri = cellUri;
             }
         }
+
+        mApp.mySnackbar(view, String.format(getString(R.string.phonebar_msg), uri), true);
 
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse(uri));

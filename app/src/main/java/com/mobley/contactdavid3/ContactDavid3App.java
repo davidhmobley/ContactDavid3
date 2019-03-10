@@ -3,6 +3,11 @@ package com.mobley.contactdavid3;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 public class ContactDavid3App extends Application {
 
@@ -62,6 +67,20 @@ public class ContactDavid3App extends Application {
             editor.putString(PREF_EMAIL_KEY, getString(R.string.default_email));
             editor.commit();
         }
+    }
+
+    public void mySnackbar(View view, String msg, boolean bLong) {
+        Snackbar snackbar;
+        if (bLong) {
+            snackbar = Snackbar.make(view, msg, Snackbar.LENGTH_LONG);
+        } else {
+            snackbar = Snackbar.make(view, msg, Snackbar.LENGTH_SHORT);
+        }
+
+        snackbar.getView().setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+        TextView tv1 = (TextView) (snackbar.getView()).findViewById(android.support.design.R.id.snackbar_text);
+        tv1.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
+        snackbar.show();
     }
 
     public SharedPreferences getAppPrefs() {
