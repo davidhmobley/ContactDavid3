@@ -49,7 +49,8 @@ public class ActionsActivity extends AppCompatActivity {
         actionBar.setIcon(R.mipmap.ic_launcher);
         actionBar.setTitle(getResources().getString(R.string.app_title));
         actionBar.setSubtitle(getResources().getString(R.string.actions_subtitle));
-        actionBar.setDisplayShowHomeEnabled(true);
+        //actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
 
         mSqlDataSource.open();
@@ -76,6 +77,7 @@ public class ActionsActivity extends AppCompatActivity {
 
         switch(item.getItemId()) {
             case R.id.action_return:
+            case android.R.id.home:
                 bOK = true; // processed
 
                 onBackPressed();
