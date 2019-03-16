@@ -22,6 +22,11 @@
     <string name="default_time_start">9:00</string>
     <string name="default_time_end">5:00</string>
 
+    <!-- Actions (Type) -->
+    <string name="action_type_text">Text</string>
+    <string name="action_type_call">Phone</string>
+    <string name="action_type_email">Email</string>
+
     <string name="work_time_title">Work Times</string>
 
     <string name="textbar_msg">Texting %1$s</string>

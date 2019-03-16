@@ -18,6 +18,8 @@ import android.widget.Button;
 import com.mobley.contactdavid3.ContactDavid3App;
 import com.mobley.contactdavid3.R;
 import com.mobley.contactdavid3.dialogs.WorkTimeDialog;
+import com.mobley.contactdavid3.sql.SqlDataSource;
+import com.mobley.contactdavid3.sql.tables.Actions;
 
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -30,12 +32,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mTextButton, mEmailButton, mPhoneButton;
     private ContactDavid3App mApp;
     private boolean mCallGranted = false;
+    private SqlDataSource mSqlDataSource = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         mApp = (ContactDavid3App) getApplication();
+        mSqlDataSource = new SqlDataSource(this);
         setContentView(R.layout.activity_main);
 
         ActionBar actionBar = getSupportActionBar();
@@ -132,11 +136,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        Calendar cal = Calendar.getInstance();
+
         if (view == mTextButton) {
             String cell = mApp.getAppPrefs().getString(ContactDavid3App.PREF_CELL_PHONE_KEY,
                     getString(R.string.default_cell_phone));
 
             mApp.mySnackbar(view, String.format(getString(R.string.textbar_msg), cell), true);
+
+            // make a note of this action
+            mSqlDataSource.open();
+            mSqlDataSource.insertActions(getString(R.string.action_type_text), cal.getTimeInMillis());
+            mSqlDataSource.close();
 
             Uri uri = Uri.parse("smsto:" + cell);
             Intent sendIntent = new Intent(Intent.ACTION_SENDTO, uri);
@@ -147,6 +158,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             mApp.mySnackbar(view, String.format(getString(R.string.emailbar_msg), email), true);
 
+            // make a note of this action
+            mSqlDataSource.open();
+            mSqlDataSource.insertActions(getString(R.string.action_type_email), cal.getTimeInMillis());
+            mSqlDataSource.close();
+
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
             intent.putExtra(Intent.EXTRA_EMAIL, new String[] { email });
@@ -156,6 +172,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(Intent.createChooser(intent, "Send Email"));
 
         } else if (view == mPhoneButton) {
+
+            // make a note of this action
+            mSqlDataSource.open();
+            mSqlDataSource.insertActions(getString(R.string.action_type_call), cal.getTimeInMillis());
+            mSqlDataSource.close();
+
             doPhoneCall(view);
         }
     }
