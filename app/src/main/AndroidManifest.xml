@@ -26,6 +26,8 @@
 
         <activity android:name=".activities.MainActivity"/>
 
+        <activity android:name=".activities.ActionsActivity"/>
+
         <activity android:name=".activities.SettingsActivity"
             android:theme="@android:style/Theme.Holo"
             android:exported="false" />

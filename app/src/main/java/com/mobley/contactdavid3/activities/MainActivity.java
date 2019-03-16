@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static final int REQUEST_CALL_PERMISSION = 1;
 
-    private Button mTextButton, mEmailButton, mPhoneButton;
+    private Button mTextButton, mEmailButton, mPhoneButton, mActionsButton;
     private ContactDavid3App mApp;
     private boolean mCallGranted = false;
     private SqlDataSource mSqlDataSource = null;
@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mPhoneButton = (Button) findViewById(R.id.phoneButton);
         mPhoneButton.setOnClickListener(this);
+
+        mActionsButton = (Button) findViewById(R.id.actionsButton);
+        mActionsButton.setOnClickListener(this);
 
         verifyPermissions(this);
     }
@@ -179,6 +182,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mSqlDataSource.close();
 
             doPhoneCall(view);
+        } else if (view == mActionsButton) {
+            Intent intent = new Intent(this, ActionsActivity.class);
+            startActivity(intent);
         }
     }
 

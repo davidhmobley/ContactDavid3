@@ -52,6 +52,18 @@
             android:text="@string/phone_button_label"
             android:textColor="@android:color/white" />
 
+        <Button
+            android:id="@+id/actionsButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:width="200dp"
+            android:background="@drawable/text_button_selector"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/actions_button_label"
+            android:textColor="@android:color/white" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
