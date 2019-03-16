@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             // make a note of this action
             mSqlDataSource.open();
-            mSqlDataSource.insertActions(getString(R.string.action_type_text), cal.getTimeInMillis());
+            mSqlDataSource.insertActions(getString(R.string.action_type_text), cal.getTimeInMillis(), cell);
             mSqlDataSource.close();
 
             Uri uri = Uri.parse("smsto:" + cell);
@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             // make a note of this action
             mSqlDataSource.open();
-            mSqlDataSource.insertActions(getString(R.string.action_type_email), cal.getTimeInMillis());
+            mSqlDataSource.insertActions(getString(R.string.action_type_email), cal.getTimeInMillis(), email);
             mSqlDataSource.close();
 
             Intent intent = new Intent(Intent.ACTION_SEND);
@@ -175,12 +175,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(Intent.createChooser(intent, "Send Email"));
 
         } else if (view == mPhoneButton) {
-
-            // make a note of this action
-            mSqlDataSource.open();
-            mSqlDataSource.insertActions(getString(R.string.action_type_call), cal.getTimeInMillis());
-            mSqlDataSource.close();
-
             doPhoneCall(view);
         } else if (view == mActionsButton) {
             Intent intent = new Intent(this, ActionsActivity.class);
@@ -209,6 +203,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         mApp.mySnackbar(view, String.format(getString(R.string.phonebar_msg), uri), true);
+
+        // make a note of this action
+        mSqlDataSource.open();
+        mSqlDataSource.insertActions(getString(R.string.action_type_call), cal.getTimeInMillis(), uri);
+        mSqlDataSource.close();
 
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse(uri));

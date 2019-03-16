@@ -8,14 +8,17 @@ public class Actions {
     public static final String ACTIONS_COL_ID = "_id";
     public static final String ACTIONS_COL_TYPE = "Type";
     public static final String ACTIONS_COL_TIMESTAMP = "Timestamp";
+    public static final String ACTIONS_COL_SENDTO = "SendTo";
 
     public long mId;
     public String mType;
     public long mTimestamp;
+    public String mSendTo;
 
-    public Actions(String type, long timestamp) {
+    public Actions(String type, long timestamp, String sendTo) {
         mType = type;
         mTimestamp = timestamp;
+        mSendTo = sendTo;
     }
 
     public long getId() {
@@ -40,5 +43,13 @@ public class Actions {
 
     public void setTimestamp(long mTimestamp) {
         this.mTimestamp = mTimestamp;
+    }
+
+    public String getSendTo() {
+        return mSendTo;
+    }
+
+    public void setSendTo(String mSendTo) {
+        this.mSendTo = mSendTo;
     }
 }

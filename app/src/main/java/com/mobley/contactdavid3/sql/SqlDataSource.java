@@ -28,7 +28,8 @@ public class SqlDataSource {
 	private String[] allActionsCols = {
 			Actions.ACTIONS_COL_ID,
 			Actions.ACTIONS_COL_TYPE,
-			Actions.ACTIONS_COL_TIMESTAMP
+			Actions.ACTIONS_COL_TIMESTAMP,
+			Actions.ACTIONS_COL_SENDTO
 	};
 
 	/** ctor */
@@ -77,13 +78,14 @@ public class SqlDataSource {
     /***** ACTIONS Functions *****/
     /*****************************/
 
-    public void insertActions(String actionType, long actionTimestamp) {
+    public void insertActions(String actionType, long actionTimestamp, String sendTo) {
         // INSERT!
         ContentValues values = new ContentValues();
 
         //values.put(Account.ACCT_COL_ID, acct.getId());
         values.put(Actions.ACTIONS_COL_TYPE, actionType);
-        values.put(Actions.ACTIONS_COL_TIMESTAMP, actionTimestamp);
+		values.put(Actions.ACTIONS_COL_TIMESTAMP, actionTimestamp);
+		values.put(Actions.ACTIONS_COL_SENDTO, sendTo);
 
         // Insert the record
         mDatabase.insert(Actions.ACTIONS_TABLE_NAME, null, values);
@@ -110,7 +112,8 @@ public class SqlDataSource {
 				actions.add(new Actions(
 						//c.getInt(0), // id
 						c.getString(1), // type
-						c.getLong(2))); // timestamp
+						c.getLong(2), // timestamp
+						c.getString(3))); // sendTo
 
 				c.moveToNext();
 			}

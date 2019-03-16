@@ -15,7 +15,7 @@ public class SqlHelper extends SQLiteOpenHelper {
 	protected static final String TAG = SqlHelper.class.getSimpleName();
 	
 	private static final String DATABASE_NAME = "ibext.db";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 
 	public SqlHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -28,7 +28,8 @@ public class SqlHelper extends SQLiteOpenHelper {
 			"create table " + Actions.ACTIONS_TABLE_NAME + "( " +
 					Actions.ACTIONS_COL_ID + " integer primary key autoincrement, " +
 					Actions.ACTIONS_COL_TYPE + " text not null, " +
-					Actions.ACTIONS_COL_TIMESTAMP + " integer not null);";
+					Actions.ACTIONS_COL_TIMESTAMP + " integer not null, " +
+					Actions.ACTIONS_COL_SENDTO + " text not null);";
 	private static final String ACTIONS_TABLE_DROP = "drop table if exists " + Actions.ACTIONS_TABLE_NAME;
 
 	/**

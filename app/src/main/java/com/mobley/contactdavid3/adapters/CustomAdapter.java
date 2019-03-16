@@ -24,12 +24,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      * Provide a reference to the type of views that you are using (custom ViewHolder)
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView actionsRowType, actionsRowTimestamp;
+        private TextView actionsRowType, actionsRowTimestamp, actionsRowSendTo;
 
         public ViewHolder(View v) {
             super(v);
             actionsRowType = (TextView) v.findViewById(R.id.actionsRowType);
             actionsRowTimestamp = (TextView) v.findViewById(R.id.actionsRowTimestamp);
+            actionsRowSendTo = (TextView) v.findViewById(R.id.actionsRowSendTo);
         }
 
         public TextView getActionsRowType() {
@@ -38,6 +39,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         public TextView getActionsRowTimestamp() {
             return actionsRowTimestamp;
+        }
+
+        public TextView getActionsRowTo() {
+            return actionsRowSendTo;
         }
     }
 
@@ -63,13 +68,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         viewHolder.getActionsRowType().setText(mActions.get(position).getType());
-        //viewHolder.getActionsRowTimestamp().setText(String.valueOf(mActions.get(position).getTimestamp()));
 
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(mActions.get(position).getTimestamp());
         viewHolder.getActionsRowTimestamp().setText((cal.get(Calendar.MONTH) + 1) + "/" +
                                                     cal.get(Calendar.DAY_OF_MONTH) + "/" +
                                                     cal.get(Calendar.YEAR));
+
+        viewHolder.getActionsRowTo().setText(mActions.get(position).getSendTo());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
