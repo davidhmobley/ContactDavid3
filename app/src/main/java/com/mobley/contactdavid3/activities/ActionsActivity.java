@@ -57,10 +57,10 @@ public class ActionsActivity extends AppCompatActivity {
         mActions = mSqlDataSource.getAllActions();
         mSqlDataSource.close();
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView = findViewById(R.id.recyclerView);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new CustomAdapter(mActions);
+        mAdapter = new CustomAdapter(mActions, mApp);
         mRecyclerView.setAdapter(mAdapter);
     }
 

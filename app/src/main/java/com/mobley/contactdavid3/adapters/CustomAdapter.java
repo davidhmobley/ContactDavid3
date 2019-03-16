@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.mobley.contactdavid3.ContactDavid3App;
 import com.mobley.contactdavid3.R;
 import com.mobley.contactdavid3.sql.tables.Actions;
 
@@ -18,6 +19,7 @@ import java.util.List;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
     protected static final String TAG = CustomAdapter.class.getSimpleName();
 
+    private ContactDavid3App mApp;
     private List<Actions> mActions;
 
     /**
@@ -28,9 +30,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         public ViewHolder(View v) {
             super(v);
-            actionsRowType = (TextView) v.findViewById(R.id.actionsRowType);
-            actionsRowTimestamp = (TextView) v.findViewById(R.id.actionsRowTimestamp);
-            actionsRowSendTo = (TextView) v.findViewById(R.id.actionsRowSendTo);
+            actionsRowType = v.findViewById(R.id.actionsRowType);
+            actionsRowTimestamp = v.findViewById(R.id.actionsRowTimestamp);
+            actionsRowSendTo = v.findViewById(R.id.actionsRowSendTo);
         }
 
         public TextView getActionsRowType() {
@@ -51,8 +53,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
      *
      * @param actions List<Actions> containing the data to populate views to be used by RecyclerView.
      */
-    public CustomAdapter(List<Actions> actions) {
+    public CustomAdapter(List<Actions> actions, ContactDavid3App app) {
         mActions = actions;
+        mApp = app;
     }
 
     // Create new views (invoked by the layout manager)
@@ -71,9 +74,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(mActions.get(position).getTimestamp());
-        viewHolder.getActionsRowTimestamp().setText((cal.get(Calendar.MONTH) + 1) + "/" +
-                                                    cal.get(Calendar.DAY_OF_MONTH) + "/" +
-                                                    cal.get(Calendar.YEAR));
+        viewHolder.getActionsRowTimestamp().setText(
+                String.format(mApp.getString(R.string.timestamp_str),
+                                cal.get(Calendar.MONTH) + 1,
+                                cal.get(Calendar.DAY_OF_MONTH),
+                                cal.get(Calendar.YEAR),
+                                cal.get(Calendar.HOUR),
+                                cal.get(Calendar.MINUTE),
+                                cal.get(Calendar.SECOND)));
 
         viewHolder.getActionsRowTo().setText(mActions.get(position).getSendTo());
     }
