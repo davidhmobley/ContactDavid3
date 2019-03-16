@@ -19,6 +19,7 @@
 
             <TextView
                 android:id="@+id/actionsRowType"
+                style="@style/My_Action_TextAppearance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -39,6 +40,7 @@
 
             <TextView
                 android:id="@+id/actionsRowToLabel"
+                style="@style/My_Action_TextAppearance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/action_row_to_label"/>

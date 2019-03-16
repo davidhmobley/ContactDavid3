@@ -25,6 +25,12 @@
         <item name="android:subtitleTextStyle">@style/My_Subtitle_TextAppearance</item>
     </style>
 
+    <style name="My_Action_TextAppearance">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/text_size_smallmedium</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="My_Title_TextAppearance" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">@dimen/text_size_smallmedium</item>
