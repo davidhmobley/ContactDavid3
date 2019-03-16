@@ -107,9 +107,10 @@ public class SqlDataSource {
 		if (c != null) {
 			c.moveToFirst();
 			while (!c.isAfterLast()) {
-				actions.add(new Actions(//c.getInt(0), // id
+				actions.add(new Actions(
+						//c.getInt(0), // id
 						c.getString(1), // type
-						c.getInt(2))); // timestamp
+						c.getLong(2))); // timestamp
 
 				c.moveToNext();
 			}

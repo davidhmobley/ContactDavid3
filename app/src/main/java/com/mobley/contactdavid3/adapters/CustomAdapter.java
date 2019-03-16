@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.mobley.contactdavid3.R;
 import com.mobley.contactdavid3.sql.tables.Actions;
 
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -62,7 +63,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         viewHolder.getActionsRowType().setText(mActions.get(position).getType());
-        viewHolder.getActionsRowTimestamp().setText(String.valueOf(mActions.get(position).getTimestamp()));
+        //viewHolder.getActionsRowTimestamp().setText(String.valueOf(mActions.get(position).getTimestamp()));
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(mActions.get(position).getTimestamp());
+        viewHolder.getActionsRowTimestamp().setText((cal.get(Calendar.MONTH) + 1) + "/" +
+                                                    cal.get(Calendar.DAY_OF_MONTH) + "/" +
+                                                    cal.get(Calendar.YEAR));
     }
 
     // Return the size of your dataset (invoked by the layout manager)
