@@ -1,12 +1,8 @@
 package com.mobley.contactdavid3.activities;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -14,19 +10,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import com.mobley.contactdavid3.ContactDavid3App;
 import com.mobley.contactdavid3.R;
 import com.mobley.contactdavid3.adapters.CustomAdapter;
-import com.mobley.contactdavid3.dialogs.WorkTimeDialog;
 import com.mobley.contactdavid3.sql.SqlDataSource;
 import com.mobley.contactdavid3.sql.tables.Actions;
 
-import java.util.Calendar;
 import java.util.List;
-import java.util.TimeZone;
 
 public class ActionsActivity extends AppCompatActivity {
     protected static final String TAG = ActionsActivity.class.getSimpleName();
@@ -85,6 +76,38 @@ public class ActionsActivity extends AppCompatActivity {
                 bOK = true; // processed
 
                 onBackPressed();
+
+                break;
+            case R.id.action_clear_db:
+                bOK = true; // processed
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setCancelable(true)
+                        .setTitle(getString(R.string.alert_verify_delete))
+                        .setMessage(getString(R.string.alert_delete_msg))
+                        .setCancelable(false)
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                mSqlDataSource.open();
+                                mSqlDataSource.deleteActions();
+                                mSqlDataSource.close();
+
+                                dialog.cancel(); // get out!
+                            }
+                        })
+                        .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                dialog.cancel(); // get out!
+                            }
+                        });
+
+                AlertDialog confirm = builder.create();
+                confirm.show();
 
                 break;
             default:

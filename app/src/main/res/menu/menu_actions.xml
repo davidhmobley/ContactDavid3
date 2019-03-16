@@ -2,9 +2,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.mobley.contactdavid3.activities.MainActivity">
+
+    <item
+        android:id="@+id/action_clear_db"
+        android:orderInCategory="100"
+        android:title="@string/action_clear_db"
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_return"
         android:orderInCategory="999"
         android:title="@string/action_return"
         app:showAsAction="never" />
+
 </menu>

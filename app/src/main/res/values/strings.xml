@@ -17,6 +17,10 @@
     <string name="action_settimes">Set Work Times</string>
     <string name="action_exit">Exit</string>
     <string name="action_return">Return</string>
+    <string name="action_clear_db">Delete Actions</string>
+
+    <string name="alert_verify_delete">Delete all actions</string>
+    <string name="alert_delete_msg">This will delete all actions. Are you sure?</string>
 
     <string name="default_name">Name</string>
     <string name="default_email">noreply@email.com</string>
