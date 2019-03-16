@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -56,7 +57,8 @@ public class ActionsActivity extends AppCompatActivity {
         mSqlDataSource.close();
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        //mRecyclerView.setLayoutManager(LayoutManagerType.LINEAR_LAYOUT_MANAGER);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new CustomAdapter(mActions);
         mRecyclerView.setAdapter(mAdapter);
     }
