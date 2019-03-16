@@ -92,7 +92,11 @@ public class ActionsActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int id) {
                                 mSqlDataSource.open();
                                 mSqlDataSource.deleteActions();
+                                mActions = mSqlDataSource.getAllActions();
                                 mSqlDataSource.close();
+
+                                mAdapter = new CustomAdapter(mActions, mApp);
+                                mRecyclerView.setAdapter(mAdapter);
 
                                 dialog.cancel(); // get out!
                             }
