@@ -43,7 +43,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             return actionsRowTimestamp;
         }
 
-        public TextView getActionsRowTo() {
+        public TextView getActionsRowSendTo() {
             return actionsRowSendTo;
         }
     }
@@ -83,7 +83,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                                 cal.get(Calendar.MINUTE),
                                 cal.get(Calendar.SECOND)));
 
-        viewHolder.getActionsRowTo().setText(mActions.get(position).getSendTo());
+        viewHolder.getActionsRowSendTo().setText(mActions.get(position).getSendTo());
     }
 
     // Return the size of your dataset (invoked by the layout manager)
