@@ -43,7 +43,6 @@ public class SqlHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(ACTIONS_TABLE_CREATE);
 		//db.execSQL(ACCOUNT_UNIQUE_INDEX_CREATE);
-
 	}
 
 	@Override
