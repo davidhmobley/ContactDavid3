@@ -240,7 +240,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startStr = mApp.getAppPrefs().getString(ContactDavid3App.PREF_TIME_START_KEY, getString(R.string.default_time_start));
         // returns something like 9:15 or just 9
         colon = startStr.indexOf(':');
-        if (colon == 0) {
+        if (colon == -1) {
             hourStr = startStr;
             minuteStr = "0";
         } else {
@@ -254,7 +254,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         endStr = mApp.getAppPrefs().getString(ContactDavid3App.PREF_TIME_END_KEY, getString(R.string.default_time_end));
         // returns something like 2:15 or just 2
         colon = endStr.indexOf(':');
-        if (colon == 0) {
+        if (colon == -1) {
             hourStr = endStr;
             minuteStr = "0";
         } else {
