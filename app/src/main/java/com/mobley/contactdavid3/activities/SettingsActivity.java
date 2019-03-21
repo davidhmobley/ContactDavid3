@@ -112,7 +112,7 @@ public class SettingsActivity extends PreferenceActivity {
 	 * Work Times Preferences Fragment
 	 * @author mobleyd
 	 *
-
+	 */
 	public static class TimePreferences extends PreferenceFragment {
 		protected static final String TAG = TimePreferences.class.getSimpleName();
 
@@ -123,5 +123,4 @@ public class SettingsActivity extends PreferenceActivity {
 			addPreferencesFromResource(R.xml.time_prefs);
 		}
 	}
-	 */
 }

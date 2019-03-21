@@ -5,6 +5,7 @@
         <EditTextPreference
             android:key="@string/pref_time_start_key"
             android:title="@string/pref_time_start_title"
+            android:inputType="time"
             android:summary="@string/pref_time_start_summary" />
     </PreferenceCategory>
 
@@ -12,6 +13,7 @@
         <EditTextPreference
             android:key="@string/pref_time_end_key"
             android:title="@string/pref_time_end_title"
+            android:inputType="time"
             android:summary="@string/pref_time_end_summary" />
     </PreferenceCategory>
 
