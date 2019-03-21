@@ -56,17 +56,17 @@
     <string name="pref_work_phone_title">Work Phone Number</string>
     <string name="pref_work_phone_summary">Phone number of work phone</string>
 
-    <string name="pref_category_name_email_title">Contact Name, Email</string>
-    <string name="pref_category_name_email_summary">Set contact name, email</string>
+    <string name="pref_category_contact_title">Contact Info</string>
+    <string name="pref_category_contact_summary">Set contact information</string>
 
     <string name="pref_category_name">Contact Name</string>
     <string name="pref_name_key">ContactName</string>
-    <string name="pref_name_title">Contact Name</string>
+    <string name="pref_name_title">Name</string>
     <string name="pref_name_summary">Name of contact</string>
 
     <string name="pref_category_email">Contact Email</string>
     <string name="pref_email_key">ContactEmail</string>
-    <string name="pref_email_title">Contact Email</string>
+    <string name="pref_email_title">Email</string>
     <string name="pref_email_summary">Email of contact</string>
 
     <string name="pref_category_time_title">Work Times</string>

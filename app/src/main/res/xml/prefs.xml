@@ -2,14 +2,9 @@
 <preference-headers xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <header
-        android:fragment="com.mobley.contactdavid3.activities.SettingsActivity$NamePreferences"
-        android:title="@string/pref_category_name_email_title"
-        android:summary="@string/pref_category_name_email_summary" />
-
-    <header
-        android:fragment="com.mobley.contactdavid3.activities.SettingsActivity$PhonePreferences"
-        android:title="@string/pref_category_phone_title"
-        android:summary="@string/pref_category_phone_summary" />
+        android:fragment="com.mobley.contactdavid3.activities.SettingsActivity$ContactPreferences"
+        android:title="@string/pref_category_contact_title"
+        android:summary="@string/pref_category_contact_summary" />
 
     <header
         android:fragment="com.mobley.contactdavid3.activities.SettingsActivity$TimePreferences"

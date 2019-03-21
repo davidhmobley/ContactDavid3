@@ -36,8 +36,13 @@ public class SettingsActivity extends PreferenceActivity {
 
     @Override
     protected boolean isValidFragment(String fragmentName) {
-        //return super.isValidFragment(fragmentName);
-        return true;
+        if (fragmentName.equals("com.mobley.contactdavid3.activities.SettingsActivity$ContactPreferences") ||
+		    fragmentName.equals("com.mobley.contactdavid3.activities.SettingsActivity$TimePreferences"))
+        {
+			return true;
+		} else {
+			return false;
+		}
     }
 
     @Override
@@ -75,36 +80,19 @@ public class SettingsActivity extends PreferenceActivity {
     }
 
 	/**
-	 * Phone Preferences Fragment
+	 * Contact Preferences Fragment
 	 * @author mobleyd
 	 *
 	 */
-	public static class PhonePreferences extends PreferenceFragment {
+	public static class ContactPreferences extends PreferenceFragment {
 		/** Logging tag */
-		protected static final String TAG = PhonePreferences.class.getSimpleName();
+		protected static final String TAG = ContactPreferences.class.getSimpleName();
 
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 
-			addPreferencesFromResource(R.xml.phone_prefs);
-		}
-	}
-
-	/**
-	 * Name Preferences Fragment
-	 * @author mobleyd
-	 *
-	 */
-	public static class NamePreferences extends PreferenceFragment {
-		/** Logging tag */
-		protected static final String TAG = NamePreferences.class.getSimpleName();
-
-		@Override
-		public void onCreate(Bundle savedInstanceState) {
-			super.onCreate(savedInstanceState);
-
-			addPreferencesFromResource(R.xml.name_prefs);
+			addPreferencesFromResource(R.xml.contact_prefs);
 		}
 	}
 
