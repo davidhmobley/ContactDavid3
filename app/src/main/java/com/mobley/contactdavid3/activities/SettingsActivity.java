@@ -2,7 +2,9 @@ package com.mobley.contactdavid3.activities;
 
 import java.util.List;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.view.Menu;
