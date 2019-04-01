@@ -2,6 +2,7 @@ package com.mobley.contactdavid3;
 
 import android.app.Application;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 public class ContactDavid3App extends Application {
 
+    public static String PREF_VERSION_KEY;
     public static String PREF_EMAIL_KEY;
     public static String PREF_NAME_KEY;
     public static String PREF_CELL_PHONE_KEY;
@@ -25,6 +27,22 @@ public class ContactDavid3App extends Application {
         super.onCreate();
 
         mAppPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+        PREF_VERSION_KEY = getResources().getString(R.string.pref_version_key);
+        if (!mAppPrefs.contains(PREF_VERSION_KEY)) {
+            SharedPreferences.Editor editor = mAppPrefs.edit();
+
+            String ver = null;
+            try {
+                ver = "v" + getPackageManager().getPackageInfo(getPackageName(),0).versionName;
+            } catch (PackageManager.NameNotFoundException e) {
+                ver = "???";
+                e.printStackTrace();
+            }
+
+            editor.putString(PREF_VERSION_KEY, ver);
+            editor.commit();
+        }
 
         PREF_TIME_START_KEY = getResources().getString(R.string.pref_time_start_key);
         if (!mAppPrefs.contains(PREF_TIME_START_KEY)) {

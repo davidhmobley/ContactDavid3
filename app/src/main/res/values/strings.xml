@@ -81,4 +81,9 @@
     <string name="pref_time_end_key">EndTime</string>
     <string name="pref_time_end_title">End Time</string>
     <string name="pref_time_end_summary">End Work Time</string>
+
+    <string name="pref_category_version">Version</string>
+    <string name="pref_version_key">Version</string>
+    <string name="pref_version_title">App Version</string>
+    <string name="pref_version_summary">Current App Version</string>
 </resources>

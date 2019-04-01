@@ -37,7 +37,8 @@ public class SettingsActivity extends PreferenceActivity {
     @Override
     protected boolean isValidFragment(String fragmentName) {
         if (fragmentName.equals("com.mobley.contactdavid3.activities.SettingsActivity$ContactPreferences") ||
-		    fragmentName.equals("com.mobley.contactdavid3.activities.SettingsActivity$TimePreferences"))
+				fragmentName.equals("com.mobley.contactdavid3.activities.SettingsActivity$TimePreferences") ||
+				fragmentName.equals("com.mobley.contactdavid3.activities.SettingsActivity$VersionPreferences"))
         {
 			return true;
 		} else {
@@ -78,6 +79,23 @@ public class SettingsActivity extends PreferenceActivity {
     public void onBuildHeaders(List<Header> target) {
         loadHeadersFromResource(R.xml.prefs, target);
     }
+
+	/**
+	 * Version Preferences Fragment
+	 * @author mobleyd
+	 *
+	 */
+	public static class VersionPreferences extends PreferenceFragment {
+		/** Logging tag */
+		protected static final String TAG = VersionPreferences.class.getSimpleName();
+
+		@Override
+		public void onCreate(Bundle savedInstanceState) {
+			super.onCreate(savedInstanceState);
+
+			addPreferencesFromResource(R.xml.version_prefs);
+		}
+	}
 
 	/**
 	 * Contact Preferences Fragment
