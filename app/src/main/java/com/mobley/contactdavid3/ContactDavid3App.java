@@ -32,25 +32,11 @@ public class ContactDavid3App extends Application {
         mAppPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         PREF_VERSION_KEY = getResources().getString(R.string.pref_version_key);
-        if (!mAppPrefs.contains(PREF_VERSION_KEY)) {
+        {
             SharedPreferences.Editor editor = mAppPrefs.edit();
-
             String ver = null;
             try {
-                ver = "v" + getPackageManager().getPackageInfo(getPackageName(),0).versionName;
-            } catch (PackageManager.NameNotFoundException e) {
-                ver = "???";
-                e.printStackTrace();
-            }
-
-            editor.putString(PREF_VERSION_KEY, ver);
-            editor.commit();
-        } else {
-            SharedPreferences.Editor editor = mAppPrefs.edit();
-
-            String ver = null;
-            try {
-                ver = "v" + getPackageManager().getPackageInfo(getPackageName(),0).versionName;
+                ver = "v" + getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
             } catch (PackageManager.NameNotFoundException e) {
                 ver = "???";
                 e.printStackTrace();
