@@ -45,6 +45,19 @@ public class ContactDavid3App extends Application {
 
             editor.putString(PREF_VERSION_KEY, ver);
             editor.commit();
+        } else {
+            SharedPreferences.Editor editor = mAppPrefs.edit();
+
+            String ver = null;
+            try {
+                ver = "v" + getPackageManager().getPackageInfo(getPackageName(),0).versionName;
+            } catch (PackageManager.NameNotFoundException e) {
+                ver = "???";
+                e.printStackTrace();
+            }
+
+            editor.putString(PREF_VERSION_KEY, ver);
+            editor.commit();
         }
 
         PREF_TIME_START_KEY = getResources().getString(R.string.pref_time_start_key);
