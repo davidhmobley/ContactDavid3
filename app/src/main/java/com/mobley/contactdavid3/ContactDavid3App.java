@@ -5,11 +5,13 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.preference.EditTextPreference;
 import android.preference.PreferenceManager;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public class ContactDavid3App extends Application {
 
@@ -97,7 +99,7 @@ public class ContactDavid3App extends Application {
         }
 
         snackbar.getView().setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
-        TextView tv1 = (TextView) (snackbar.getView()).findViewById(android.support.design.R.id.snackbar_text);
+        TextView tv1 = (TextView) (snackbar.getView()).findViewById(com.google.android.material.R.id.snackbar_text);
         tv1.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
         snackbar.show();
     }
