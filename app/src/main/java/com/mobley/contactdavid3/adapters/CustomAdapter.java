@@ -84,7 +84,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                                 cal.get(Calendar.MINUTE),
                                 cal.get(Calendar.SECOND)));
 
-        viewHolder.getActionsRowSendTo().setText(mActions.get(position).getSendTo());
+        //viewHolder.getActionsRowSendTo().setText(mActions.get(position).getSendTo());
+        String sendTo = mActions.get(position).getSendTo();
+        int nFound = sendTo.indexOf("tel:");
+        if (nFound == -1) {
+            viewHolder.getActionsRowSendTo().setText(sendTo);
+        } else {
+            // remove "tel:"
+            viewHolder.getActionsRowSendTo().setText(sendTo.substring(nFound+4));
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)
