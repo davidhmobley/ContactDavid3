@@ -18,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class ContactDavid3App extends Application implements SoundPool.OnLoadCompleteListener {
     protected static final String TAG = ContactDavid3App.class.getSimpleName();
 
+    public static String PREF_SOUND_KEY;
     public static String PREF_VERSION_KEY;
     public static String PREF_EMAIL_KEY;
     public static String PREF_NAME_KEY;
@@ -50,6 +51,13 @@ public class ContactDavid3App extends Application implements SoundPool.OnLoadCom
             }
 
             editor.putString(PREF_VERSION_KEY, ver);
+            editor.commit();
+        }
+
+        PREF_SOUND_KEY = getResources().getString(R.string.pref_sound_key);
+        if (!mAppPrefs.contains(PREF_SOUND_KEY)) {
+            SharedPreferences.Editor editor = mAppPrefs.edit();
+            editor.putBoolean(PREF_SOUND_KEY, true);
             editor.commit();
         }
 
@@ -138,14 +146,14 @@ public class ContactDavid3App extends Application implements SoundPool.OnLoadCom
         final int PRIORITY = 0; // 0=Lowest
         final int NO_LOOP = 0;
         final float NORMAL_PLAYBACK = 1.0f;
-        //boolean bSound = mAppPrefs.getBoolean(PREF_SOUND_KEY, getResources().getBoolean(R.bool.default_want_sound));
+        boolean bSound = mAppPrefs.getBoolean(PREF_SOUND_KEY, true);
 
         if ((soundId == mPlingSound && mPlingLoaded) ||
                 (soundId == mClickSound && mClickLoaded) ||
                 (soundId == mBongSound && mBongLoaded) ||
                 (soundId == mWhooshSound && mWhooshLoaded))
         {
-            if (mSoundPool != null  && soundId != -1) {
+            if (mSoundPool != null  && soundId != -1 && bSound) {
                 mSoundPool.play(soundId, VOLUME, VOLUME, PRIORITY, NO_LOOP, NORMAL_PLAYBACK);
             }
 

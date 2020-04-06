@@ -8,4 +8,13 @@
             android:summary="@string/pref_version_summary"/>
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/pref_category_sound" >
+        <CheckBoxPreference
+            android:key="@string/pref_sound_key"
+            android:defaultValue="true"
+            android:title="@string/pref_sound_title"
+            android:summaryOff="@string/pref_sound_off_summary"
+            android:summaryOn="@string/pref_sound_on_summary" />
+    </PreferenceCategory>
+
 </PreferenceScreen>

@@ -87,6 +87,12 @@
     <string name="pref_version_title">App Version</string>
     <string name="pref_version_summary">Current App Version</string>
 
+    <string name="pref_category_sound">Sounds</string>
+    <string name="pref_sound_key">SoundsHeard</string>
+    <string name="pref_sound_title">Sound Effects?</string>
+    <string name="pref_sound_on_summary">Sound Effects are ON</string>
+    <string name="pref_sound_off_summary">Sound Effects are OFF</string>
+
     <string name="pref_phone_permission_key">PhonePermission</string>
 
 </resources>
