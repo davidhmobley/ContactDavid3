@@ -86,13 +86,34 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         //viewHolder.getActionsRowSendTo().setText(mActions.get(position).getSendTo());
         String sendTo = mActions.get(position).getSendTo();
-        int nFound = sendTo.indexOf("tel:");
-        if (nFound == -1) {
-            viewHolder.getActionsRowSendTo().setText(sendTo);
+
+        if ((mActions.get(position).getType().equals("Text")) ||
+           (mActions.get(position).getType().equals("Phone")))
+        {
+            int nFound = sendTo.indexOf("tel:");
+            if (nFound == -1) {
+                viewHolder.getActionsRowSendTo().setText(formatPhoneNumber(sendTo));
+            } else {
+                // remove "tel:"
+                viewHolder.getActionsRowSendTo().setText(formatPhoneNumber(sendTo.substring(nFound+4)));
+            }
         } else {
-            // remove "tel:"
-            viewHolder.getActionsRowSendTo().setText(sendTo.substring(nFound+4));
+            // Email
+            viewHolder.getActionsRowSendTo().setText(sendTo);
         }
+    }
+
+    private String formatPhoneNumber(String phoneNumber) {
+        StringBuffer sb = new StringBuffer();
+
+        sb.append('(');
+        sb.append(phoneNumber.substring(0, 3));
+        sb.append(") ");
+        sb.append(phoneNumber.substring(3, 6));
+        sb.append('-');
+        sb.append(phoneNumber.substring(6));
+
+        return sb.toString();
     }
 
     // Return the size of your dataset (invoked by the layout manager)
