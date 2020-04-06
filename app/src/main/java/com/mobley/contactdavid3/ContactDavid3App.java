@@ -3,6 +3,8 @@ package com.mobley.contactdavid3;
 import android.app.Application;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.preference.EditTextPreference;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -13,7 +15,8 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.snackbar.Snackbar;
 
-public class ContactDavid3App extends Application {
+public class ContactDavid3App extends Application implements SoundPool.OnLoadCompleteListener {
+    protected static final String TAG = ContactDavid3App.class.getSimpleName();
 
     public static String PREF_VERSION_KEY;
     public static String PREF_EMAIL_KEY;
@@ -25,6 +28,9 @@ public class ContactDavid3App extends Application {
     public static String PREF_PHONE_PERMISSION_KEY;
 
     private SharedPreferences mAppPrefs = null;
+    private SoundPool mSoundPool;
+    private boolean mPlingLoaded = false, mClickLoaded = false, mBongLoaded = false, mWhooshLoaded = false;
+    public int mPlingSound = -1, mClickSound = -1, mBongSound = -1, mWhooshSound = -1;
 
     @Override
     public void onCreate() {
@@ -94,6 +100,79 @@ public class ContactDavid3App extends Application {
             SharedPreferences.Editor editor = mAppPrefs.edit();
             editor.putBoolean(PREF_PHONE_PERMISSION_KEY, false);
             editor.commit();
+        }
+
+        // Sounds setup
+        mPlingLoaded = false;
+        mClickLoaded = false;
+        mBongLoaded = false;
+        mWhooshLoaded = false;
+        mSoundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 0);
+        mSoundPool.setOnLoadCompleteListener(this);
+
+        mPlingSound = mSoundPool.load(this, R.raw.pling, 1);
+        mClickSound = mSoundPool.load(this, R.raw.click, 1);
+        mBongSound = mSoundPool.load(this, R.raw.bong, 1);
+        mWhooshSound = mSoundPool.load(this, R.raw.fast_whoosh, 1);
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+
+        mSoundPool.release();
+        mSoundPool = null;
+        mPlingLoaded = false;
+        mClickLoaded = false;
+        mBongLoaded = false;
+        mWhooshLoaded = false;
+    }
+
+    /**
+     * Play a sound
+     * @param soundId Sound to play
+     * @param bDelay TRUE=add delay, FALSE otherwise
+     */
+    public void playSound(int soundId, boolean bDelay) {
+        final float VOLUME = 0.10f;
+        final int PRIORITY = 0; // 0=Lowest
+        final int NO_LOOP = 0;
+        final float NORMAL_PLAYBACK = 1.0f;
+        //boolean bSound = mAppPrefs.getBoolean(PREF_SOUND_KEY, getResources().getBoolean(R.bool.default_want_sound));
+
+        if ((soundId == mPlingSound && mPlingLoaded) ||
+                (soundId == mClickSound && mClickLoaded) ||
+                (soundId == mBongSound && mBongLoaded) ||
+                (soundId == mWhooshSound && mWhooshLoaded))
+        {
+            if (mSoundPool != null  && soundId != -1) {
+                mSoundPool.play(soundId, VOLUME, VOLUME, PRIORITY, NO_LOOP, NORMAL_PLAYBACK);
+            }
+
+            if (bDelay) {
+                try {
+                    Thread.sleep(250);
+                } catch (InterruptedException e) {
+                    // shhhh!
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
+        final int SUCCESS = 0;
+
+        if (status == SUCCESS) {
+            if (sampleId == mPlingSound) {
+                mPlingLoaded = true;
+            } else if (sampleId == mClickSound) {
+                mClickLoaded = true;
+            } else if (sampleId == mBongSound) {
+                mBongLoaded = true;
+            } else if (sampleId == mWhooshSound) {
+                mWhooshLoaded = true;
+            }
         }
     }
 

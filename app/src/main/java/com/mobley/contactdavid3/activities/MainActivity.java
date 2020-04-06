@@ -150,6 +150,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         Calendar cal = Calendar.getInstance();
 
+        mApp.playSound(mApp.mBongSound, false);
+
         if (view == mTextButton) {
             String cell = mApp.getAppPrefs().getString(ContactDavid3App.PREF_CELL_PHONE_KEY,
                     getString(R.string.default_cell_phone));
