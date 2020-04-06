@@ -22,6 +22,7 @@ public class ContactDavid3App extends Application {
     public static String PREF_WORK_PHONE_KEY;
     public static String PREF_TIME_START_KEY;
     public static String PREF_TIME_END_KEY;
+    public static String PREF_PHONE_PERMISSION_KEY;
 
     private SharedPreferences mAppPrefs = null;
 
@@ -85,6 +86,13 @@ public class ContactDavid3App extends Application {
         if (!mAppPrefs.contains(PREF_EMAIL_KEY)) {
             SharedPreferences.Editor editor = mAppPrefs.edit();
             editor.putString(PREF_EMAIL_KEY, getString(R.string.default_email));
+            editor.commit();
+        }
+
+        PREF_PHONE_PERMISSION_KEY = getResources().getString(R.string.pref_phone_permission_key);
+        if (!mAppPrefs.contains(PREF_PHONE_PERMISSION_KEY)) {
+            SharedPreferences.Editor editor = mAppPrefs.edit();
+            editor.putBoolean(PREF_PHONE_PERMISSION_KEY, false);
             editor.commit();
         }
     }

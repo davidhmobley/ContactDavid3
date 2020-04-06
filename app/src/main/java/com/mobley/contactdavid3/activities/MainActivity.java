@@ -3,6 +3,7 @@ package com.mobley.contactdavid3.activities;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -71,6 +72,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mTextButton.setText(String.format(getString(R.string.text_button_label), mApp.getAppPrefs().getString(ContactDavid3App.PREF_NAME_KEY, getString(R.string.default_name))));
         mEmailButton.setText(String.format(getString(R.string.email_button_label), mApp.getAppPrefs().getString(ContactDavid3App.PREF_NAME_KEY, getString(R.string.default_name))));
         mPhoneButton.setText(String.format(getString(R.string.phone_button_label), mApp.getAppPrefs().getString(ContactDavid3App.PREF_NAME_KEY, getString(R.string.default_name))));
+
+        mCallGranted = mApp.getAppPrefs().getBoolean(ContactDavid3App.PREF_PHONE_PERMISSION_KEY, false);
+        mPhoneButton.setEnabled(mCallGranted);
     }
 
     @Override
@@ -133,6 +137,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else {
                     mCallGranted = false;
                 }
+
+                SharedPreferences.Editor editor = mApp.getAppPrefs().edit();
+                editor.putBoolean(ContactDavid3App.PREF_PHONE_PERMISSION_KEY, mCallGranted);
+                editor.commit();
+
                 break;
         }
     }
