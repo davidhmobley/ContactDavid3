@@ -2,9 +2,9 @@
 <preference-headers xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <header
-        android:fragment="com.mobley.contactdavid3.activities.SettingsActivity$VersionPreferences"
-        android:title="@string/pref_version_title"
-        android:summary="@string/pref_version_summary" />
+        android:fragment="com.mobley.contactdavid3.activities.SettingsActivity$MiscPreferences"
+        android:title="@string/pref_category_misc"
+        android:summary="@string/pref_misc_summary" />
 
     <header
         android:fragment="com.mobley.contactdavid3.activities.SettingsActivity$ContactPreferences"

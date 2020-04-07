@@ -38,7 +38,7 @@ public class SettingsActivity extends PreferenceActivity {
     protected boolean isValidFragment(String fragmentName) {
         if (fragmentName.equals("com.mobley.contactdavid3.activities.SettingsActivity$ContactPreferences") ||
 				fragmentName.equals("com.mobley.contactdavid3.activities.SettingsActivity$TimePreferences") ||
-				fragmentName.equals("com.mobley.contactdavid3.activities.SettingsActivity$VersionPreferences"))
+				fragmentName.equals("com.mobley.contactdavid3.activities.SettingsActivity$MiscPreferences"))
         {
 			return true;
 		} else {
@@ -81,19 +81,19 @@ public class SettingsActivity extends PreferenceActivity {
     }
 
 	/**
-	 * Version Preferences Fragment
+	 * Misc Preferences Fragment
 	 * @author mobleyd
 	 *
 	 */
-	public static class VersionPreferences extends PreferenceFragment {
+	public static class MiscPreferences extends PreferenceFragment {
 		/** Logging tag */
-		protected static final String TAG = VersionPreferences.class.getSimpleName();
+		protected static final String TAG = MiscPreferences.class.getSimpleName();
 
 		@Override
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 
-			addPreferencesFromResource(R.xml.version_prefs);
+			addPreferencesFromResource(R.xml.misc_prefs);
 		}
 	}
 
