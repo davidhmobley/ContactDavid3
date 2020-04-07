@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             // make a note of this action
             mSqlDataSource.open();
-            mSqlDataSource.insertActions(getString(R.string.action_type_text), cal.getTimeInMillis(), cell);
+            mSqlDataSource.insertActions(ContactDavid3App.TEXT, cal.getTimeInMillis(), cell);
             mSqlDataSource.close();
 
             Uri uri = Uri.parse("smsto:" + cell);
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             // make a note of this action
             mSqlDataSource.open();
-            mSqlDataSource.insertActions(getString(R.string.action_type_email), cal.getTimeInMillis(), email);
+            mSqlDataSource.insertActions(ContactDavid3App.EMAIL, cal.getTimeInMillis(), email);
             mSqlDataSource.close();
 
             Intent intent = new Intent(Intent.ACTION_SEND);
@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // make a note of this action
         mSqlDataSource.open();
-        mSqlDataSource.insertActions(getString(R.string.action_type_call), cal.getTimeInMillis(), uri);
+        mSqlDataSource.insertActions(ContactDavid3App.PHONE, cal.getTimeInMillis(), uri);
         mSqlDataSource.close();
 
         Intent intent = new Intent(Intent.ACTION_CALL);

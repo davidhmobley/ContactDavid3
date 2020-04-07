@@ -19,6 +19,10 @@ import com.google.android.material.snackbar.Snackbar;
 public class ContactDavid3App extends Application implements SoundPool.OnLoadCompleteListener {
     protected static final String TAG = ContactDavid3App.class.getSimpleName();
 
+    public static final String TEXT = "Text";
+    public static final String EMAIL = "Email";
+    public static final String PHONE = "Phone";
+
     public static String PREF_SOUND_KEY;
     public static String PREF_VERSION_KEY;
     public static String PREF_EMAIL_KEY;

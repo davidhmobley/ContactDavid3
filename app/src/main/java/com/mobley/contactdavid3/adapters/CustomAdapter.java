@@ -87,8 +87,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         //viewHolder.getActionsRowSendTo().setText(mActions.get(position).getSendTo());
         String sendTo = mActions.get(position).getSendTo();
 
-        if ((mActions.get(position).getType().equals("Text")) ||
-           (mActions.get(position).getType().equals("Phone")))
+        if ((mActions.get(position).getType().equals(ContactDavid3App.TEXT)) ||
+           (mActions.get(position).getType().equals(ContactDavid3App.PHONE)))
         {
             int nFound = sendTo.indexOf("tel:");
             if (nFound == -1) {
