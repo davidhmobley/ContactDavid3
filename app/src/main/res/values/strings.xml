@@ -2,7 +2,7 @@
     <string name="app_name">ContactMe</string>
     <string name="app_title">ContactMe</string>
     <string name="splash_company_name">Mobley, Inc</string>
-    <string name="splash_copyright">copyright 2019-2020</string>
+    <string name="splash_copyright">copyright 2019&#8211;2020</string>
 
     <string name="main_subtitle">Main</string>
     <string name="actions_subtitle">Actions</string>
@@ -27,7 +27,7 @@
     <string name="default_cell_phone">9999999999</string>
     <string name="default_work_phone">9999999999</string>
     <string name="default_time_start">9:00</string>
-    <string name="default_time_end">5:00</string>
+    <string name="default_time_end">17:00</string>
 
     <string name="action_row_to_label">To:</string>
     <!-- Actions (Type) -->
@@ -37,7 +37,7 @@
 
     <string name="timestamp_str">%1$d/%2$d/%3$d %4$d:%5$02d.%6$02d</string>
 
-    <string name="work_time_title">Work Times</string>
+    <string name="work_time_title">Work Times (Military)</string>
 
     <string name="textbar_msg">Texting %1$s</string>
     <string name="emailbar_msg">Emailing %1$s</string>
