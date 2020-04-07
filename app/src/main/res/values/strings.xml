@@ -9,6 +9,8 @@
     <string name="pref_subtitle">Preferences</string>
 
     <string name="phone_button_label">Call %1$s</string>
+    <string name="phone_cell_button_label">Call Cell</string>
+    <string name="phone_work_button_label">Call Work</string>
     <string name="text_button_label">Text %1$s</string>
     <string name="email_button_label">Email %1$s</string>
     <string name="actions_button_label">Actions</string>

@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static final int REQUEST_CALL_PERMISSION = 1;
 
-    private Button mTextButton, mEmailButton, mPhoneButton, mActionsButton;
+    private Button mTextButton, mEmailButton, mPhoneButton, mPhoneCellBtn, mPhoneWorkBtn, mActionsButton;
     private ContactDavid3App mApp;
     private boolean mCallGranted = false;
     private SqlDataSource mSqlDataSource = null;
@@ -58,6 +58,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mPhoneButton = (Button) findViewById(R.id.phoneButton);
         mPhoneButton.setOnClickListener(this);
+
+        mPhoneCellBtn = (Button) findViewById(R.id.phoneCellButton);
+        mPhoneCellBtn.setOnClickListener(this);
+
+        mPhoneWorkBtn = (Button) findViewById(R.id.phoneWorkButton);
+        mPhoneWorkBtn.setOnClickListener(this);
 
         mActionsButton = (Button) findViewById(R.id.actionsButton);
         mActionsButton.setOnClickListener(this);
@@ -187,8 +193,54 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else if (view == mPhoneButton) {
             doPhoneCall(view);
+        } else if (view == mPhoneCellBtn) {
+            doPhoneCallCell(view);
+        } else if (view == mPhoneWorkBtn) {
+            doPhoneCallWork(view);
         } else if (view == mActionsButton) {
             Intent intent = new Intent(this, ActionsActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    private void doPhoneCallCell(View view) {
+        String cell = mApp.getAppPrefs().getString(ContactDavid3App.PREF_CELL_PHONE_KEY,
+                getString(R.string.default_cell_phone));
+        String cellUri = "tel:" + cell;
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("America/New_York"));
+
+        mApp.mySnackbar(view, String.format(getString(R.string.phonebar_msg), cellUri), true);
+
+        // make a note of this action
+        mSqlDataSource.open();
+        mSqlDataSource.insertActions(ContactDavid3App.PHONE, cal.getTimeInMillis(), cellUri);
+        mSqlDataSource.close();
+
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse(cellUri));
+
+        if (checkPermission()) {
+            startActivity(intent);
+        }
+    }
+
+    private void doPhoneCallWork(View view) {
+        String work = mApp.getAppPrefs().getString(ContactDavid3App.PREF_WORK_PHONE_KEY,
+                getString(R.string.default_work_phone));
+        String workUri = "tel:" + work;
+        Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("America/New_York"));
+
+        mApp.mySnackbar(view, String.format(getString(R.string.phonebar_msg), workUri), true);
+
+        // make a note of this action
+        mSqlDataSource.open();
+        mSqlDataSource.insertActions(ContactDavid3App.PHONE, cal.getTimeInMillis(), workUri);
+        mSqlDataSource.close();
+
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse(workUri));
+
+        if (checkPermission()) {
             startActivity(intent);
         }
     }
