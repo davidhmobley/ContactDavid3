@@ -5,7 +5,10 @@
         <EditTextPreference
             android:key="@string/pref_version_key"
             android:title="@string/pref_version_title"
-            android:summary="@string/pref_version_summary"/>
+            android:enabled="false"
+            android:selectable="false"
+            android:persistent="false"
+            android:shouldDisableView="false"/>
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/pref_category_sound" >

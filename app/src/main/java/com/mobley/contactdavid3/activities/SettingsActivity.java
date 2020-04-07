@@ -3,6 +3,7 @@ package com.mobley.contactdavid3.activities;
 import java.util.List;
 
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.view.Menu;
@@ -93,7 +94,14 @@ public class SettingsActivity extends PreferenceActivity {
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 
+			ContactDavid3App mApp = (ContactDavid3App) getActivity().getApplication();
+
 			addPreferencesFromResource(R.xml.misc_prefs);
+
+			// Version
+			EditTextPreference versionPref = (EditTextPreference)findPreference(ContactDavid3App.PREF_VERSION_KEY);
+			String version = mApp.getAppPrefs().getString(ContactDavid3App.PREF_VERSION_KEY, "???");
+			versionPref.setTitle(getString(R.string.pref_version_key) + " " + version);
 		}
 	}
 
