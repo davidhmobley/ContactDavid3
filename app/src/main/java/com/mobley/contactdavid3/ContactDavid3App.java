@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.os.Build;
 import android.preference.EditTextPreference;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -115,7 +116,14 @@ public class ContactDavid3App extends Application implements SoundPool.OnLoadCom
         mClickLoaded = false;
         mBongLoaded = false;
         mWhooshLoaded = false;
-        mSoundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 0);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mSoundPool = new SoundPool.Builder()
+                    .setMaxStreams(4)
+                    .build();
+        } else {
+            mSoundPool = new SoundPool(4, AudioManager.STREAM_MUSIC, 0);
+        }
         mSoundPool.setOnLoadCompleteListener(this);
 
         mPlingSound = mSoundPool.load(this, R.raw.pling, 1);
