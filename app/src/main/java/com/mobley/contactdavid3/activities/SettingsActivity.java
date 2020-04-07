@@ -37,14 +37,9 @@ public class SettingsActivity extends PreferenceActivity {
 
     @Override
     protected boolean isValidFragment(String fragmentName) {
-        if (fragmentName.equals("com.mobley.contactdavid3.activities.SettingsActivity$ContactPreferences") ||
+        return (fragmentName.equals("com.mobley.contactdavid3.activities.SettingsActivity$ContactPreferences") ||
 				fragmentName.equals("com.mobley.contactdavid3.activities.SettingsActivity$TimePreferences") ||
-				fragmentName.equals("com.mobley.contactdavid3.activities.SettingsActivity$MiscPreferences"))
-        {
-			return true;
-		} else {
-			return false;
-		}
+				fragmentName.equals("com.mobley.contactdavid3.activities.SettingsActivity$MiscPreferences"));
     }
 
     @Override
@@ -94,13 +89,13 @@ public class SettingsActivity extends PreferenceActivity {
 		public void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 
-			ContactDavid3App mApp = (ContactDavid3App) getActivity().getApplication();
+			ContactDavid3App app = (ContactDavid3App) getActivity().getApplication();
 
 			addPreferencesFromResource(R.xml.misc_prefs);
 
 			// Version
 			EditTextPreference versionPref = (EditTextPreference)findPreference(ContactDavid3App.PREF_VERSION_KEY);
-			String version = mApp.getAppPrefs().getString(ContactDavid3App.PREF_VERSION_KEY, "???");
+			String version = app.getAppPrefs().getString(ContactDavid3App.PREF_VERSION_KEY, "???");
 			versionPref.setTitle(getString(R.string.pref_version_key) + " " + version);
 		}
 	}
