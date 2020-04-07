@@ -7,7 +7,7 @@
 			<solid
 				android:color="@color/button_disabled_color"/>
 		    <corners
-				android:radius="10dp"/>
+				android:radius="20dp"/>
 		</shape>
 	</item>
 </layer-list>
