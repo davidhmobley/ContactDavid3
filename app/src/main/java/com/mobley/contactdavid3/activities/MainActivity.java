@@ -50,22 +50,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         actionBar.setDisplayShowHomeEnabled(true);
         actionBar.setHomeButtonEnabled(true);
 
-        mTextButton = (Button) findViewById(R.id.textButton);
+        mTextButton = findViewById(R.id.textButton);
         mTextButton.setOnClickListener(this);
 
-        mEmailButton = (Button) findViewById(R.id.emailButton);
+        mEmailButton = findViewById(R.id.emailButton);
         mEmailButton.setOnClickListener(this);
 
-        mPhoneButton = (Button) findViewById(R.id.phoneButton);
+        mPhoneButton = findViewById(R.id.phoneButton);
         mPhoneButton.setOnClickListener(this);
 
-        mPhoneCellBtn = (Button) findViewById(R.id.phoneCellButton);
+        mPhoneCellBtn = findViewById(R.id.phoneCellButton);
         mPhoneCellBtn.setOnClickListener(this);
 
-        mPhoneWorkBtn = (Button) findViewById(R.id.phoneWorkButton);
+        mPhoneWorkBtn = findViewById(R.id.phoneWorkButton);
         mPhoneWorkBtn.setOnClickListener(this);
 
-        mActionsButton = (Button) findViewById(R.id.actionsButton);
+        mActionsButton = findViewById(R.id.actionsButton);
         mActionsButton.setOnClickListener(this);
 
         verifyPermissions(this);
@@ -81,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mCallGranted = mApp.getAppPrefs().getBoolean(ContactDavid3App.PREF_PHONE_PERMISSION_KEY, false);
         mPhoneButton.setEnabled(mCallGranted);
+        mPhoneCellBtn.setEnabled(mCallGranted);
+        mPhoneWorkBtn.setEnabled(mCallGranted);
     }
 
     @Override
