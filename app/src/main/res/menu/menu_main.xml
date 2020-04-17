@@ -8,9 +8,14 @@
         android:title="@string/action_settings"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_settimes"
+        android:id="@+id/action_set_start_time"
         android:orderInCategory="200"
-        android:title="@string/action_settimes"
+        android:title="@string/action_set_start_time"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_set_end_time"
+        android:orderInCategory="201"
+        android:title="@string/action_set_end_time"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_exit"

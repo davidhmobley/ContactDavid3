@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         boolean bOK = false;
+        WorkTimeDialog dlg;
 
         switch(item.getItemId()) {
             case R.id.action_settings:
@@ -104,13 +105,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(preferencesIntent);
 
                 break;
-            case R.id.action_settimes:
+            case R.id.action_set_start_time:
                 bOK = true; // processed
 
-                WorkTimeDialog dlg = (WorkTimeDialog) WorkTimeDialog.newInstance();
-                dlg.setStartTime(mApp.getAppPrefs().getString(ContactDavid3App.PREF_TIME_START_KEY, getString(R.string.default_time_start)));
-                dlg.setEndTime(mApp.getAppPrefs().getString(ContactDavid3App.PREF_TIME_END_KEY, getString(R.string.default_time_end)));
-                dlg.show(getSupportFragmentManager(), "WorkTime");
+                dlg = (WorkTimeDialog) WorkTimeDialog.newInstance();
+                dlg.setTime(mApp.getAppPrefs().getString(ContactDavid3App.PREF_TIME_START_KEY, getString(R.string.default_time_start)));
+                dlg.setProcessingStartTime(true);
+                dlg.show(getSupportFragmentManager(), "StartWorkTime");
+
+                break;
+            case R.id.action_set_end_time:
+                bOK = true; // processed
+
+                dlg = (WorkTimeDialog) WorkTimeDialog.newInstance();
+                dlg.setTime(mApp.getAppPrefs().getString(ContactDavid3App.PREF_TIME_END_KEY, getString(R.string.default_time_end)));
+                dlg.setProcessingStartTime(false);
+                dlg.show(getSupportFragmentManager(), "EndWorkTime");
 
                 break;
             case R.id.action_exit:

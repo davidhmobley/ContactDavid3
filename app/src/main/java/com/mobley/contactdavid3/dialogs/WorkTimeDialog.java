@@ -3,6 +3,7 @@ package com.mobley.contactdavid3.dialogs;
 import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatDialogFragment;
 
@@ -21,11 +23,10 @@ public class WorkTimeDialog extends AppCompatDialogFragment implements View.OnCl
     protected static final String TAG = WorkTimeDialog.class.getSimpleName();
 
     private ContactDavid3App mApp;
-    private TextView mStartTV, mEndTV;
-    private EditText mStartET, mEndET;
+    private TimePicker mWorkTimeTP;
     private Button mGoButton;
-    private String mStartTime;
-    private String mEndTime;
+    private String mTime;
+    private boolean mProcessingStartTime = false;
 
     public static AppCompatDialogFragment newInstance() {
         AppCompatDialogFragment dialogFragment = new WorkTimeDialog();
@@ -45,7 +46,11 @@ public class WorkTimeDialog extends AppCompatDialogFragment implements View.OnCl
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
         Dialog dialog = super.onCreateDialog(savedInstanceState);
-        dialog.setTitle(getString(R.string.work_time_title));
+        if (mProcessingStartTime) {
+            dialog.setTitle(getString(R.string.work_time_start_title));
+        } else {
+            dialog.setTitle(getString(R.string.work_time_end_title));
+        }
 
         return dialog;
     }
@@ -55,13 +60,11 @@ public class WorkTimeDialog extends AppCompatDialogFragment implements View.OnCl
 
         View view = inflater.inflate(R.layout.work_time_dialog, null);
 
-        mStartTV = view.findViewById(R.id.startTimeTV);
-        mStartET = view.findViewById(R.id.startTime);
-        mStartET.setText(mStartTime);
-
-        mEndTV = view.findViewById(R.id.endTimeTV);
-        mEndET = view.findViewById(R.id.endTime);
-        mEndET.setText(mEndTime);
+        mWorkTimeTP = view.findViewById(R.id.workTimeTP);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            mWorkTimeTP.setHour(getHour(mTime));
+            mWorkTimeTP.setMinute(getMinutes(mTime));
+        }
 
         mGoButton = view.findViewById(R.id.goButton);
         mGoButton.setOnClickListener(this);
@@ -72,47 +75,74 @@ public class WorkTimeDialog extends AppCompatDialogFragment implements View.OnCl
     @Override
     public void onClick(View view) {
 
-        boolean bGood = true;
+        int startHour=12, startMinutes=0, endHour=12, endMinutes=0;
 
         if (view == mGoButton) {
             //hideKeyboard(this);
 
-            if (TextUtils.isEmpty(mStartET.getText())) {
-                bGood = false;
-                mStartTV.setTextColor(Color.RED);
-                mStartET.requestFocus();
-            } else {
-                mStartTV.setTextColor(Color.BLACK);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                if (mProcessingStartTime) {
+                    startHour = mWorkTimeTP.getHour();
+                    startMinutes = mWorkTimeTP.getMinute();
+                } else {
+                    endHour = mWorkTimeTP.getHour();
+                    endMinutes = mWorkTimeTP.getMinute();
+                }
             }
 
-            if (bGood && TextUtils.isEmpty(mEndET.getText())) {
-                bGood = false;
-                mEndTV.setTextColor(Color.RED);
-                mEndET.requestFocus();
-            } else {
-                mEndTV.setTextColor(Color.BLACK);
-            }
+            if (mProcessingStartTime) {
+                String szStartTime = String.valueOf(startHour).concat(":").concat(String.valueOf(startMinutes));
 
-            if (bGood) {
-                //save values
                 SharedPreferences.Editor editor = mApp.getAppPrefs().edit();
-                editor.putString(ContactDavid3App.PREF_TIME_START_KEY, mStartET.getText().toString());
+                editor.putString(ContactDavid3App.PREF_TIME_START_KEY, szStartTime);
+                //editor.putString(ContactDavid3App.PREF_TIME_START_KEY, mStartET.getText().toString());
                 editor.commit();
+            } else {
+                String szEndTime = String.valueOf(endHour).concat(":").concat(String.valueOf(endMinutes));
 
-                editor = mApp.getAppPrefs().edit();
-                editor.putString(ContactDavid3App.PREF_TIME_END_KEY, mEndET.getText().toString());
+                SharedPreferences.Editor editor = mApp.getAppPrefs().edit();
+                editor.putString(ContactDavid3App.PREF_TIME_END_KEY, szEndTime);
+                //editor.putString(ContactDavid3App.PREF_TIME_END_KEY, mEndET.getText().toString());
                 editor.commit();
-
-                dismiss();
             }
+
+            dismiss();
         }
     }
 
-    public void setStartTime(String startTime) {
-        mStartTime = startTime;
+    private int getHour(String theTime) {
+        String hourStr, minuteStr;
+
+        int colon = theTime.indexOf(':');
+        if (colon == -1) {
+            hourStr = theTime;
+            minuteStr = "0";
+        } else {
+            hourStr = theTime.substring(0, colon);
+            minuteStr = theTime.substring(colon+1);
+        }
+        return Integer.parseInt(hourStr);
     }
 
-    public void setEndTime(String endTime) {
-        mEndTime = endTime;
+    private int getMinutes(String theTime) {
+        String hourStr, minuteStr;
+
+        int colon = theTime.indexOf(':');
+        if (colon == -1) {
+            hourStr = theTime;
+            minuteStr = "0";
+        } else {
+            hourStr = theTime.substring(0, colon);
+            minuteStr = theTime.substring(colon+1);
+        }
+        return Integer.parseInt(minuteStr);
+    }
+
+    public void setTime(String theTime) {
+        mTime = theTime;
+    }
+
+    public void setProcessingStartTime(boolean mStartTime) {
+        mProcessingStartTime = mStartTime;
     }
 }

@@ -5,58 +5,19 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp">
+    <!--
     android:layout_gravity="center"
-    android:gravity="center">
+    android:gravity="center"-->
 
-    <TableLayout
-        android:id="@+id/second_tableLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/startTimeTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center"
-                android:text="Start Time:"/>
-
-            <EditText
-                android:id="@+id/startTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="time" />
-
-        </TableRow>
-
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/endTimeTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right|center"
-                android:text="End Time:"/>
-
-            <EditText
-                android:id="@+id/endTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:inputType="time" />
-
-        </TableRow>
-    </TableLayout>
+    <TimePicker
+        android:id="@+id/workTimeTP"
+        android:timePickerMode="clock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
     <Button
         android:id="@+id/goButton"
@@ -64,6 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="5dp"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:background="@drawable/text_button_selector"
         android:text="Go!" />
 
