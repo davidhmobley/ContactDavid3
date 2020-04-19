@@ -28,6 +28,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:background="@drawable/text_button_selector"
+        android:textColor="@android:color/white"
         android:text="Go!" />
 
 </LinearLayout>
