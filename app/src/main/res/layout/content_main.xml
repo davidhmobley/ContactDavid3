@@ -73,7 +73,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="@string/phone_cell_button_label"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@color/colorPrimary" />
 
                 <Button
                     android:id="@+id/phoneWorkButton"
@@ -85,7 +85,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="@string/phone_work_button_label"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@color/colorPrimary" />
 
             </LinearLayout>
 

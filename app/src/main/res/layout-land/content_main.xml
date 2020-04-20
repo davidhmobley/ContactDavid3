@@ -27,7 +27,7 @@
                 android:id="@+id/textButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
                 android:width="200dp"
                 android:background="@drawable/text_button_selector"
                 android:paddingLeft="10dp"
@@ -39,7 +39,7 @@
                 android:id="@+id/emailButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
                 android:width="200dp"
                 android:background="@drawable/text_button_selector"
                 android:paddingLeft="10dp"
@@ -51,7 +51,7 @@
                 android:id="@+id/phoneButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
                 android:width="200dp"
                 android:background="@drawable/text_button_selector"
                 android:paddingLeft="10dp"
@@ -73,7 +73,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="@string/phone_cell_button_label"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@color/colorPrimary" />
 
                 <Button
                     android:id="@+id/phoneWorkButton"
@@ -85,7 +85,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="@string/phone_work_button_label"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@color/colorPrimary" />
 
             </LinearLayout>
 
