@@ -59,11 +59,41 @@
                 android:text="@string/phone_button_label"
                 android:textColor="@android:color/white" />
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <Button
+                    android:id="@+id/phoneCellButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/sm_text_button_selector"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/phone_cell_button_label"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/phoneWorkButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/sm_text_button_selector"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/phone_work_button_label"
+                    android:textColor="@android:color/white" />
+
+            </LinearLayout>
+
             <Button
                 android:id="@+id/actionsButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="20dp"
                 android:width="200dp"
                 android:background="@drawable/text_button_selector"
                 android:paddingLeft="10dp"

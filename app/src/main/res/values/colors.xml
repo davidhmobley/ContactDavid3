@@ -7,6 +7,7 @@
     <color name="bg_color">#ecff97</color>
 
     <color name="button_default_color">@color/colorPrimary</color>
+    <color name="sm_button_default_color">#805337</color>
     <color name="button_disabled_color">#c0c0c0</color>
     <color name="button_pressed_color">@color/colorAccent</color>
 
